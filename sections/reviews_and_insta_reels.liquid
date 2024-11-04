@@ -1,0 +1,190 @@
+<style>
+  .custom-tabs-section {
+  margin-top: 30px;
+}
+
+.review {
+  margin-bottom: 20px;
+}
+
+.review-author-img {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  object-fit: cover;
+  margin-right: 10px;
+}
+
+.insta-reels {
+  display: flex;
+  gap: 15px;
+  flex-wrap: wrap;
+}
+
+.insta-reel img {
+  width: 150px;
+  height: 150px;
+  object-fit: cover;
+}
+  .nav-tabs .nav-item.show .nav-link, .nav-tabs .nav-link.active {
+    color: #fff;
+    background-color: #0B2757;
+    border-color: #0B2757;
+}
+.nav-tabs .nav-link {
+    border-radius: 20px;
+    color: #0B2757;
+    border-color: #0B2757;
+    padding: 4px 25px;
+}
+  ul#customTabs {
+    margin-left: 20px;
+    column-gap: 10px;
+}
+  @media (min-width:768px){
+    div#reviews .reviews, div#all .reviews {
+        grid-template-columns: 1fr 1fr 1fr 1fr;
+        margin: 20px auto 0;
+    }
+    .review h5 {
+    font-size: 25px;
+    font-weight: 600;
+}
+    .review p {
+    font-size: 20px;
+    font-weight: 400;
+}
+  }
+</style>
+
+<div class="custom-tabs-section">
+  <!-- Tabs navigation -->
+  <ul class="nav nav-tabs" id="customTabs" role="tablist">
+    <li class="nav-item" role="presentation">
+      <button class="nav-link active" id="reviews-tab" data-bs-toggle="tab" data-bs-target="#reviews" type="button" role="tab" aria-controls="reviews" aria-selected="true">
+        Reviews
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="insta-tab" data-bs-toggle="tab" data-bs-target="#insta" type="button" role="tab" aria-controls="insta" aria-selected="false">
+        Insta Reels
+      </button>
+    </li>
+    <li class="nav-item" role="presentation">
+      <button class="nav-link" id="all-tab" data-bs-toggle="tab" data-bs-target="#all" type="button" role="tab" aria-controls="all" aria-selected="false">
+        All
+      </button>
+    </li>
+  </ul>
+
+  <!-- Tabs content -->
+  <div class="tab-content" id="customTabsContent">
+    <!-- Reviews Tab -->
+    <div class="tab-pane fade show active" id="reviews" role="tabpanel" aria-labelledby="reviews-tab">
+      <div class="reviews">
+        {% for block in section.blocks %}
+        <div class="review">
+          {% if block.settings.review_image %}
+          <img src="{{ block.settings.review_image | image_url }}" alt="{{ block.settings.review_author }}" class="review-author-img">
+          {% endif %}
+          <h5>{{ block.settings.review_author }}</h5>
+          <p>{{ block.settings.review_content }}</p>
+        </div>
+        {% endfor %}
+      </div>
+    </div>
+
+    <!-- Insta Reels Tab -->
+    <div class="tab-pane fade" id="insta" role="tabpanel" aria-labelledby="insta-tab">
+      <div class="insta-reels">
+        <!-- Assuming you're using a third-party Instagram app or API for this -->
+        <p>Instagram reels will be displayed here from the connected app.</p>
+        <!-- Example reels structure -->
+      </div>
+    </div>
+
+    <!-- All Tab (combining both Reviews and Insta Reels) -->
+    <div class="tab-pane fade" id="all" role="tabpanel" aria-labelledby="all-tab">
+      <div class="all-content">
+        <!-- Reviews in All Tab -->
+        <div class="reviews">
+          {% for block in section.blocks %}
+          <div class="review">
+            {% if block.settings.review_image %}
+            <img src="{{ block.settings.review_image | image_url }}" alt="{{ block.settings.review_author }}" class="review-author-img">
+            {% endif %}
+            <h5>{{ block.settings.review_author }}</h5>
+            <p>{{ block.settings.review_content }}</p>
+          </div>
+          {% endfor %}
+        </div>
+
+        <!-- Insta Reels in All Tab -->
+        <div class="insta-reels">
+          <p>Instagram reels will be displayed here from the connected app.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+<script>
+  // jQuery(document).ready(function(){
+  //   jQuery('.nav-tabs .nav-link').on('click',function(){
+  //     if(jQuery(this).hasClass('active')){
+  //       return
+  //     }
+  //     jQuery('.nav-tabs .nav-link.active').removeClass('active')
+  //     jQuery(this).addClass('active')
+  //     jQuery(`#customTabsContent .active.show`).removeClass('active show')
+  //     jQuery(`#customTabsContent ${jQuery(this).attr('data-bs-target')}`).addClass('active show')
+  //   })
+  // })
+//   document.addEventListener('DOMContentLoaded', function () {
+//   const tabs = document.querySelectorAll('.nav-tabs .nav-link');
+//   tabs.forEach(tab => {
+//     tab.addEventListener('click', function () {
+//       if(this.classList.contains('active')){
+//         return
+//       }
+//       jQuery('.nav-tabs .nav-link.active').removeClass('active')
+//       jQuery(this).addClass('active')
+//       console.log(`Tab switched to: ${this.getAttribute('aria-controls')}`);
+//     });
+//   });
+// });
+</script>
+{% schema %}
+  {
+  "name": "Custom Tabs Section",
+  "settings": [],
+  "blocks": [
+    {
+      "type": "review",
+      "name": "Review",
+      "settings": [
+        {
+          "type": "text",
+          "id": "review_author",
+          "label": "Review Author"
+        },
+        {
+          "type": "textarea",
+          "id": "review_content",
+          "label": "Review Content"
+        },
+        {
+          "type": "image_picker",
+          "id": "review_image",
+          "label": "Author Image (optional)"
+        }
+      ]
+    }
+  ],
+  "presets": [
+    {
+      "name": "Custom Tabs",
+      "category": "Custom"
+    }
+  ]
+}
+{% endschema %}

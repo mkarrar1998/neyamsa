@@ -1,0 +1,42 @@
+<link rel="stylesheet" href="{{ 'main-footer.css' | asset_url }}" media="print" onload="this.media='all'">
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css" rel="stylesheet">
+<noscript>{{ 'main-footer.css' | asset_url | stylesheet_tag }}</noscript>
+<div class="aboveFooter">
+  <div class="innerWrapper">
+    <img src="https://cdn.shopify.com/s/files/1/0899/3367/6830/files/97ee289d-0d38-4ca5-acc2-ad9b9ed8bef0_5.jpg?v=1728396002&width=1600">
+  </div>
+</div>
+<footer class="site-footer">
+    <div class="footer-content">
+        <h2 class="footer-title">Neyam</h2>
+        <p class="footer-description">
+            Since each of us is different in our choices, "Neyam" was launched from an innovative concept of comfort and today. 
+            We redefine comfort and give you an unparalleled perfect experience.
+        </p>
+
+        <div class="footer-links">
+            <div class="important-links">
+                <h3>Important Links</h3>
+                <ul>
+                    {% for link in linklists.main-menu.links %}
+                        <li><a href="{{ link.url }}">{{ link.title }}</a></li>
+                    {% endfor %}
+                </ul>
+            </div>
+
+            <div class="follow-us">
+                <h3>Follow Us On</h3>
+                <ul class="social-icons">
+                    <li><a href="#"><i class="fab fa-facebook"></i></a></li>
+                    <li><a href="#"><i class="fab fa-twitter"></i></a></li>
+                    <li><a href="#"><i class="fab fa-instagram"></i></a></li>
+                    <li><a href="#"><i class="fab fa-youtube"></i></a></li>
+                </ul>
+            </div>
+        </div>
+
+        <div class="footer-bottom">
+            <p>All content rights reserved to Qubes Company</p>
+        </div>
+    </div>
+</footer>

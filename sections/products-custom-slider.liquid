@@ -1,0 +1,241 @@
+<style>
+.customProductlistItem {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 40px;
+}
+.customProductlistItem .product-card__info a {
+    text-align: left;
+}
+.productSliderWrapper {
+    margin-bottom: 80px;
+}
+  @media (max-width:767px){
+    .customProductlistItem .product-card__info a {
+      font-size: 12px;
+    }
+    .customProductlistItem {
+        gap: 20px;
+    }
+    .productSliderWrapper {
+        margin-bottom: 40px;
+    }
+  }
+</style>
+<div class="customstyle{{ section.id }} pcs" data-aos="{{ section.settings.animation }}">
+  {%- render 'style-section' -%}
+  <div class="{{ section.settings.setwidth }}">
+    <div class="section-block">
+        {%- render 'section-heading' -%}
+        {% if section.blocks.size > 0 %}
+             <div class="productSliderWrapper">
+              <div class="productlist-swiper swiper-container swipercol-{{ section.id }} pb-5" id="Productlist-{{ section.id }}"
+                data-section-id="{{ section.id }}"  
+                data-section-type="swipercustom"
+                data-perview-desktop="1"
+                data-space-between="30"
+                data-perview-mobile="1">
+                <div class="swiper-wrapper">
+                  {%- for block in section.blocks -%}
+                          {%- case block.type -%}
+                            {%- when 'slide' -%}
+                            {% if block.settings.product_list != blank %}
+                              <div class="customProductlistItem swiper-slide">
+                                  {%- for product in block.settings.product_list -%}
+                                    <div data-aos="{{ section.settings.animation }}"  data-aos-delay="{{ forloop.index | times: 100 }}">
+                                      {%- render 'product-card', product: product -%}
+                                    </div>
+                                  {%- endfor -%}
+                              </div>
+                              {% endif %}
+                          {%- endcase -%}
+                          
+                  {%- endfor -%}
+                </div>
+                {%- if section.settings.scrollbar -%}
+                <div class="swiper-scrollbar"></div>
+                {%- endif -%}
+              </div>
+             </div>
+        {% endif %}
+    </div>
+  </div>
+</div>
+{% schema %}
+  {
+    "name": "Product Custom Slider",
+    "settings": [
+      {
+        "type": "select",
+        "id": "animation",
+        "options": [
+          {
+            "value": "",
+            "label": "None"
+          },
+          {
+            "value": "fade",
+            "label": "Fade"
+          },
+          {
+            "value": "fade-up",
+            "label": "Fade Up"
+          },
+          {
+            "value": "fade-down",
+            "label": "Fade Down"
+          },
+          {
+            "value": "fade-left",
+            "label": "Fade Left"
+          },
+          {
+            "value": "fade-right",
+            "label": "Fade Right"
+          },
+          {
+            "value": "fade-up-right",
+            "label": "Fade Up Right"
+          },
+          {
+            "value": "fade-up-left",
+            "label": "Fade Up Left"
+          },
+          {
+            "value": "fade-down-right",
+            "label": "Fade Down Right"
+          },
+          {
+            "value": "fade-down-left",
+            "label": "Fade Down Left"
+          },
+          {
+            "value": "flip-up",
+            "label": "Flip Up"
+          },
+          {
+            "value": "flip-down",
+            "label": "Flip Down"
+          },
+          {
+            "value": "flip-left",
+            "label": "Flip Left"
+          },
+          {
+            "value": "flip-right",
+            "label": "Flip Right"
+          },
+          {
+            "value": "slide-up",
+            "label": "Slide Up"
+          },
+          {
+            "value": "slide-down",
+            "label": "Slide Down"
+          },
+          {
+            "value": "slide-left",
+            "label": "Slide Left"
+          },
+          {
+            "value": "slide-right",
+            "label": "Slide Right"
+          },
+          {
+            "value": "zoom-in",
+            "label": "Zoom In"
+          },
+          {
+            "value": "zoom-in-up",
+            "label": "Zoom In Up"
+          },
+          {
+            "value": "zoom-in-down",
+            "label": "Zoom In Down"
+          },
+          {
+            "value": "zoom-in-left",
+            "label": "Zoom In Left"
+          },
+          {
+            "value": "zoom-in-right",
+            "label": "Zoom In Right"
+          },
+          {
+            "value": "zoom-out",
+            "label": "Zoom Out"
+          },
+          {
+            "value": "zoom-out-up",
+            "label": "Zoom Out Up"
+          },
+          {
+            "value": "zoom-out-down",
+            "label": "Zoom Out Down"
+          },
+          {
+            "value": "zoom-out-left",
+            "label": "Zoom Out Feft"
+          },
+          {
+            "value": "zoom-out-right",
+            "label": "Zoom Out Right"
+          }
+        ],
+        "label": "Select Animation"
+      },
+      {
+        "type": "select",
+        "id": "setwidth",
+        "label": "Full Width",
+        "default": "container",
+        "options": [
+          {
+            "value": "container",
+            "label": "Box"
+          },
+          {
+            "value": "container-fluid",
+            "label": "Container Fluid"
+          },
+          {
+            "value": "full",
+            "label": "Full"
+          }
+        ]
+      },
+      {
+        "type": "checkbox",
+        "id": "scrollbar",
+        "label": "Scroll Bar",
+        "default": true
+      },
+      {
+        "type": "text",
+        "id": "title_top",
+        "label": "Heading",
+        "default": "Our Products"
+      },
+    ],
+    "blocks": [
+      {
+        "type": "slide",
+        "name": "Slide",
+        "settings": [
+          {
+            "type": "product_list",
+            "id": "product_list",
+            "label": "Product List",
+            "limit": 4
+          }
+        ]
+      }
+    ],
+    "presets": [
+    {
+      "name": "Product Custom Slider",
+      "category": "Collection"
+    }
+  ]
+  }
+{% endschema %}

@@ -1,0 +1,93 @@
+.site-footer,.site-footer *{
+  color:#fff;
+}
+.site-footer {
+        background: linear-gradient(to bottom, #0b417f, #6fa8d8, #f6d0a7); /* Adjusted gradient */
+    color: white;
+    padding: 40px 20px;
+    text-align: center;
+    font-family: 'Arial', sans-serif;
+}
+
+.footer-title {
+    font-size: 2.5em; /* Bigger title like in the image */
+    font-weight: bold;
+    margin-bottom: 15px;
+}
+
+.footer-description {
+    font-size: 1.1em;
+    margin-bottom: 30px;
+    line-height: 1.6;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.footer-links {
+    display: flex;
+    justify-content: space-between;
+    padding: 20px 0;
+    max-width: 800px;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+.important-links ul {
+    list-style: none;
+    padding: 0;
+    text-align: left;
+}
+
+.important-links ul li {
+    margin-bottom: 10px;
+}
+
+.important-links ul li a {
+    color: white;
+    text-decoration: none;
+    font-size: 1.2em;
+}
+
+.important-links ul li a:hover {
+    text-decoration: underline;
+}
+
+.follow-us ul {
+    display: flex;
+    justify-content: center;
+    list-style: none;
+    padding: 0;
+}
+
+.follow-us ul li {
+    margin: 0 10px;
+}
+
+.social-icons a {
+    color: white;
+    font-size: 1.5em;
+    text-decoration: none;
+}
+
+.footer-bottom {
+    margin-top: 20px;
+    font-size: 0.9em;
+    border-top: 1px solid rgba(255, 255, 255, 0.2);
+    padding-top: 10px;
+    max-width: 600px;
+    margin-left: auto;
+    margin-right: auto;
+}
+.aboveFooter {
+    background: linear-gradient(to top, #183f72, #183f72);
+}
+.aboveFooter .innerWrapper {
+    max-width: 1100px;
+    margin: 0 auto;
+}
+@media (max-width:767px){
+  .site-footer h3{
+    font-size: 17px;
+  }
+}

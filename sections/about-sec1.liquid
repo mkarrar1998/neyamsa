@@ -1,0 +1,81 @@
+<div class="about-sec1">
+  <div class="container">
+       <div class="row">
+           <div class="col-md-6 about-info-left">
+              <span class="abspan">WHO WE ARE</span>
+              <h2 class="info-title">{{ section.settings.heading }}</h2>
+              <div class="info-descp">
+                {{ section.settings.descp }}
+              </div>
+           </div>
+
+           <div class="col-md-6 about-info-right">
+              <img src="{{ section.settings.image | img_url:'' }}" class="ab-img">
+           </div> 
+       </div>
+  </div>
+</div>
+
+
+<style>
+
+.about-sec1 .about-info-right img.ab-img {
+    width: 100%;
+    border-radius: 24px;
+}
+.about-sec1 {
+    padding-top: 80px;
+    padding-bottom: 80px;
+}
+.about-sec1 .row {
+    align-items: center;
+}
+.about-sec1 span.abspan {
+    background: #0b2757;
+    color: #fff;
+    border-radius: 100px;
+    padding: 10px 20px;
+    display: inline-block;
+    margin-bottom: 20px;
+}
+.about-sec1 h2.info-title {
+    font-size: 50px;
+    line-height: 60px;
+    font-weight: 700;
+    color: #191C1F;
+}
+
+  
+</style>
+
+
+
+
+{% schema %}
+  {
+    "name": "About Sec1",
+   "settings": [
+            {
+                 "type":"text",
+                 "id":"heading",
+                 "label":"Heading"
+            },
+            {
+                 "type":"richtext",
+                 "id":"descp",
+                 "label":"Description"
+            },
+            {
+                 "type":"image_picker",
+                 "id":"image",
+                 "label":"Image"
+            }
+    ],
+    "presets": [
+          {
+          "name": "About Sec1",
+          "category": "custom"
+          }
+     ]
+  }
+{% endschema %}
